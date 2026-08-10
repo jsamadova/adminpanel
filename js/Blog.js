@@ -50,7 +50,7 @@ function getShowData() {
                                             aria-label="Edit John Doe">
                                             Edit
                                         </button>
-                                        <button type="button"
+                                        <button type="button" onclick="deleteBlog('${items.id}')"
                                             class="text-sm text-red-700 cursor-pointer hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 rounded"
                                             aria-label="Delete John Doe">
                                             Delete
@@ -142,3 +142,15 @@ function updateData() {
         })
 }
 
+//DELETE METODU
+function deleteBlog(id) {
+    fetch(`${Base_Api}/${id}`, {
+        method: "DELETE"
+    })
+        .then(res => res.json())
+        .then(res => {
+            alert("Sucessfully deleted")
+            blogsContainer.innerHTML = ''
+            getShowData()
+        })
+}
